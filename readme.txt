@@ -3,7 +3,7 @@ Contributors: gradeus
 Tags: reviews, reputation, seo
 Tested up to: 4.1.1
 
-Stream your latest and greatest reviews from around the Web to your Wordpress website and display them with the SEO-friendly rich-snippet markup of your choice.
+Stream your latest and greatest reviews from around the Web to your Wordpress site and display them with SEO-friendly rich-snippet markup.
 
 == Description ==
 

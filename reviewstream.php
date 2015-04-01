@@ -2,7 +2,7 @@
 /*
 Plugin Name: Review Stream
 Plugin URI: https://www.grade.us/home
-Description: Stream your latest and greatest reviews from around the Web to your Wordpress website and display them with the SEO-friendly rich-snippet markup of your choice.
+Description: Stream your latest and greatest reviews from around the Web to your Wordpress site and display them with SEO-friendly rich-snippet markup.
 Version: 0.1
 Author: Grade Us, Inc.
 Author Email: hello@grade.us
