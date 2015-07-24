@@ -77,7 +77,7 @@ class ReviewStream {
     } else {
       $this->brand = 'Grade.us';
       $this->brand_domain = 'grade.us';
-      $this->powered_by = 'Powered by <a href="https://www.grade.us/home">Grade.us</a>';
+      $this->powered_by = 'Powered by <a href="https://www.grade.us/home" title="Grade.us Review Management Software">Grade.us</a>';
     }
 
     // Register the shortcode [reviewstream]
