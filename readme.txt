@@ -1,7 +1,7 @@
 === Review Stream ===
 Contributors: gradeus
 Tags: reviews, reputation, seo
-Tested up to: 4.1.1
+Tested up to: 4.2.3
 
 Stream your latest and greatest reviews from around the Web to your Wordpress site and display them with SEO-friendly rich-snippet markup.
 
@@ -17,3 +17,5 @@ To use this plugin, you must:
 
 = 0.1 (2015-04-01) =
 * No fooling! This is an alpha release for select users.
+= 0.11 (2015-07-24) =
+* Adding additional config options to reviewstream shortcode: show_aggregate_rating, show_reviews, show_powered_by
