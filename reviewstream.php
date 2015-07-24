@@ -111,37 +111,43 @@ class ReviewStream {
   function render_shortcode($atts) {
     $base_url = "https://www.grade.us/api/v1/reviews";
     $token = get_option('rs_api_token');
+    // Extract the attributes
+    extract(shortcode_atts(array(
+      'path' => get_option('rs_path'),
+      'count' => get_option('rs_default_count'),
+      'type' => get_option('rs_type'),
+      'format' => get_option('rs_schema'),
+      'show_aggregate_rating' => get_option('rs_show_aggregate_rating'),
+      'show_reviews' => get_option('rs_show_reviews'),
+      'show_powered_by' => get_option('rs_show_powered_by')
+      ), $atts));
     // Set defaults just in case
-    $type = get_option('rs_type');
     if(!$type) {
       // Default
       $type = 'LocalBusiness';
     }
-    $format = get_option('rs_schema');
     if(!$format) {
       // Default
       $format = 'microdata';
     }
-    $show_aggregate_rating = get_option('rs_show_aggregate_rating');
-    if($show_aggregate_rating === null) {
+    if($show_aggregate_rating != 'false' && $show_aggregate_rating != false) {
       // Default
       $show_aggregate_rating = true;
+    } else {
+      $show_aggregate_rating = false;
     }
-    $show_reviews = get_option('rs_show_reviews');
-    if($show_reviews === null) {
+    if($show_reviews != 'false' && $show_reviews != false) {
       // Default
       $show_reviews = true;
+    } else {
+      $show_reviews = false;
     }
-    $show_powered_by = get_option('rs_show_powered_by');
-    if($show_powered_by === null) {
+    if($show_powered_by != 'false' && $show_powered_by != false) {
       // Default
       $show_powered_by = true;
+    } else {
+      $show_powered_by = false;
     }
-    // Extract the attributes
-    extract(shortcode_atts(array(
-      'path' => get_option('rs_path'),
-      'count' => get_option('rs_default_count')
-      ), $atts));
     // Build the query, remove double slashes
     $query = '/'.$path.'/?count='.$count;
     while (strpos($query, '//') > -1) {
@@ -170,7 +176,7 @@ class ReviewStream {
     if ($show_aggregate_rating) {
       $template_content = file_get_contents(dirname(__FILE__).'/templates/aggregate_rating_'.$format.'.php');
       $widget = '<div class="rating-widget"><span class="stars">';
-      for($s=1;$s<=5;$s++) {
+      for($s=1;$s<=$response['ratings_max'];$s++) {
         $class = 'star-md';
         if($response['ratings_average'] >= $s) {
           //$class .= '';
@@ -194,7 +200,7 @@ class ReviewStream {
       $tokens = array('category', 'attribution', 'snippet', 'rating', 'url');
       foreach($response['reviews'] as $indresp) {
         $widget = '<div class="rating-widget"><span class="stars">';
-        for($s=1;$s<=5;$s++) {
+        for($s=1;$s<=$response['ratings_max'];$s++) {
           $class = 'star-sm';
           if($indresp['rating'] >= $s) {
             //$class .= '';
